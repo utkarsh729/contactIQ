@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: scm2
+    env: java
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/scm2.0-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: JAVA_VERSION
+        value: 21
+      - key: SPRING_PROFILES_ACTIVE
+        value: prod
+      - key: MYSQL_HOST
+        fromDatabase:
+          name: scm2-db
+          property: host
+      - key: MYSQL_PORT
+        fromDatabase:
+          name: scm2-db
+          property: port
+      - key: MYSQL_DB
+        fromDatabase:
+          name: scm2-db
+          property: database
+      - key: MYSQL_USER
+        fromDatabase:
+          name: scm2-db
+          property: user
+      - key: MYSQL_PASSWORD
+        fromDatabase:
+          name: scm2-db
+          property: password
+
+databases:
+  - name: scm2-db
+    databaseName: scm20
+    user: scm2_user
+    plan: free 
