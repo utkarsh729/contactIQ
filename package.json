@@ -1,0 +1,13 @@
+{
+  "name": "contactiq",
+  "version": "1.0.0",
+  "description": "ContactIQ Spring Boot Application",
+  "scripts": {
+    "start": "java -jar target/scm2.0-0.0.1-SNAPSHOT.jar",
+    "build": "./mvnw clean package -DskipTests",
+    "postinstall": "chmod +x mvnw"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+} 

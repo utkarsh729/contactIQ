@@ -1,9 +1,9 @@
 services:
   - type: web
-    name: scm2
-    env: java
-    buildCommand: ./mvnw clean package -DskipTests
-    startCommand: java -jar target/scm2.0-0.0.1-SNAPSHOT.jar
+    name: contactiq
+    env: node
+    buildCommand: npm install && npm run build
+    startCommand: npm start
     envVars:
       - key: JAVA_VERSION
         value: 21
@@ -29,6 +29,9 @@ services:
         fromDatabase:
           name: scm2-db
           property: password
+    healthCheckPath: /actuator/health
+    autoDeploy: true
+    plan: free
 
 databases:
   - name: scm2-db
