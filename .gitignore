@@ -36,6 +36,8 @@ build/
 src/main/resources/application.properties
 src/main/resources/application-prod.properties
 src/main/resources/application-dev.properties
+.env
+.env.*
 
 ### Logs ###
 *.log
@@ -44,3 +46,11 @@ logs/
 ### OS specific ###
 .DS_Store
 Thumbs.db
+
+### Secrets ###
+**/credentials.json
+**/client_secret*.json
+**/application-*.yml
+**/application-*.yaml
+**/application-*.properties
+!**/application.properties.template

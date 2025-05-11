@@ -17,12 +17,19 @@ git clone https://github.com/your-username/scm2.0.git
 cd scm2.0
 ```
 
-2. Create application.properties:
+2. Set up environment:
 ```bash
-cp src/main/resources/application.properties.template src/main/resources/application.properties
+# On Unix/Linux/Mac
+chmod +x setup-env.sh
+./setup-env.sh
+
+# On Windows
+.\setup-env.sh
 ```
 
-3. Update the application.properties with your local configuration
+3. Update the configuration files:
+   - `.env` - Update with your local credentials
+   - `src/main/resources/application.properties` - Update with your local configuration
 
 4. Run the application:
 ```bash
@@ -79,6 +86,14 @@ JWT_EXPIRATION=86400000
    - Environment: Java
    - Build Command: ./mvnw clean package -DskipTests
    - Start Command: java -jar target/scm2.0-0.0.1-SNAPSHOT.jar
+
+## Security Best Practices
+
+1. Never commit sensitive information to Git
+2. Use environment variables for all secrets
+3. Keep your .env file local and never commit it
+4. Regularly rotate passwords and API keys
+5. Use strong, unique passwords for each service
 
 ## Features
 
