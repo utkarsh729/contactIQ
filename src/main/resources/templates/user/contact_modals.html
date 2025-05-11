@@ -1,0 +1,92 @@
+<div data-th-fragment="contact">
+    <!-- Modal toggle -->
+    <!-- <button data-modal-target="default-modal" data-modal-toggle="default-modal" 
+        class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" 
+        type="button">
+        Toggle modal
+    </button> -->
+
+    <!-- Main modal -->
+    <div id="view_contact_modal" tabindex="-1" aria-hidden="true" 
+        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-4xl max-h-full">
+            <!-- Modal content -->
+            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                <!-- Modal Body -->
+                <div class="p-4 md:p-5 text-center">
+
+                    <!-- Contact Image Centered -->
+                    <img id="contact_image" src="" 
+                        alt="/images/user.png" 
+                        class="w-32 h-32 mx-auto rounded-full border-2 border-gray-300 dark:border-gray-500">
+
+                    <!-- Contact Name -->
+                    <h3 id="contact_name" class="text-2xl font-semibold text-gray-900 dark:text-white mt-4">
+                        Name
+                    </h3>
+
+                    <!-- Contact Email -->
+                    <p id="contact_email" class="text-gray-600 dark:text-gray-300 mt-1">
+                        email@example.com
+                    </p>
+
+                    <!-- Table for Other Details -->
+                    <div class="mt-6">
+                        <table class="w-full border-collapse border border-gray-300 dark:border-gray-600">
+                            <tr>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                    <i class="fa-solid fa-location-dot w-4 h-4"></i> Address
+                                </td>
+                                <td id="contact_address" class="border border-gray-300 dark:border-gray-600 px-4 py-2">-</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                    <i class="fa-solid fa-heart h-4 w-4"></i> Favourite
+                                </td>
+                                <td id="contact_fav" class="border border-gray-300 dark:border-gray-600 px-4 py-2">-</td>
+                            </tr>
+<!--                            birthday -->
+                            <tr>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                    <i class="fa-solid fa-cake-candles h-4 w-4"></i>Birthday
+                                </td>
+                                <td id="contact_birthday" class="border border-gray-300 dark:border-gray-600 px-4 py-2">-</td>
+                            </tr>
+
+                            <tr>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                    <i class="fa-solid fa-clipboard w-4 h-4"></i> Description
+                                </td>
+                                <td id="contact_description" class="border border-gray-300 dark:border-gray-600 px-4 py-2">-</td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                    <i class="fa-brands fa-instagram h-4 w-4"></i> Instagram
+                                </td>
+                                <td id="contact_instaLink" class="border border-gray-300 dark:border-gray-600 px-4 py-2">
+                                    <a href="#" target="_blank" class="text-blue-600 hover:underline">-</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border border-gray-300 dark:border-gray-600 px-4 py-2 font-semibold">
+                                    <i class="fa-brands fa-linkedin h-4 w-4"></i> LinkedIn
+                                </td>
+                                <td id="contact_linkedInLink" class="border border-gray-300 dark:border-gray-600 px-4 py-2">
+                                    <a href="#" target="_blank" class="text-blue-600 hover:underline">-</a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Modal Footer -->
+                <div class="flex justify-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button onclick="closeContactModal()" type="button" 
+                        class="py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

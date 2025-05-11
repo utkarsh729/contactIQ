@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+    <title>ContactIQ | Services</title>
+</head>
+<body>
+    <section id="content">
+        <!-- Services Hero -->
+        <div class="bg-blue-600 dark:bg-blue-400
+         text-white py-20">
+            <div class="container mx-auto px-2 text-center">
+                <h1 class="text-4xl font-bold mb-2">Powerful Contact Management Features</h1>
+                <p class="text-xl">Everything you need to manage your professional network</p>
+            </div>
+        </div>
+
+        <!-- Features Section -->
+        <div class="container mx-auto px-4 py-16">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Contact Fields Card -->
+                <div class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition-shadow group">
+                    <div class="w-full h-48 overflow-hidden rounded-lg mb-4">
+                        <img src="/images/advancecontact.png" 
+                             alt="Advanced Contact Fields Interface"
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Advanced Contact Fields</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Store emails, phones, birthdays, social links, addresses, and custom notes
+                    </p>
+                </div>
+        
+                <!-- Smart Search Card -->
+                <div class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition-shadow group">
+                    <div class="w-full h-48 overflow-hidden rounded-lg mb-4">
+                        <img src="/images/searchcontact.png" 
+                             alt="Smart Search Interface"
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Smart Search</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Instant search across all contact fields with filters
+                    </p>
+                </div>
+        
+                <!-- Direct Communication Card -->
+                <div class="p-6 bg-white dark:bg-gray-700 rounded-lg shadow-md hover:shadow-lg transition-shadow group">
+                    <div class="w-full h-48 overflow-hidden rounded-lg mb-4">
+                        <img src="/images/directcom.png" 
+                             alt="Direct Communication Features"
+                             class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300">
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Direct Communication</h3>
+                    <p class="text-gray-600 dark:text-gray-300">
+                        Call, message, or email directly from the platform
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- CTA Section -->
+        <div class="bg-gray-50 dark:bg-gray-800 py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-4">Ready to Get Organized?</h2>
+                <p class="text-xl mb-8">Join thousands of professionals managing their contacts efficiently</p>
+                <a href="/register" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-all">
+                    Start Now !!
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <script th:fragment="script">
+        // Services page specific scripts
+        console.log("Services page loaded");
+    </script>
+</body>
+</html>
