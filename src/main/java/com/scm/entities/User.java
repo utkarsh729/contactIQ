@@ -43,12 +43,10 @@ public class User implements UserDetails {
     )
     private String email;
     private String password;
-    @Lob
     @Column(
             columnDefinition = "TEXT"
     )
     private String about;
-    @Lob
     @Column(
             columnDefinition = "TEXT"
     )
