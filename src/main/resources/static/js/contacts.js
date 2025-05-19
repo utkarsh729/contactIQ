@@ -2,9 +2,9 @@ console.log("contacts.js")
 // options with default values
 
 const viewContactModal=document.getElementById('view_contact_modal');
-const baseURL = "http://localhost:8080";
+// const baseURL = "http://localhost:8080";
 //const baseURL = "http://contactiq.ap-south-1.elasticbeanstalk.com";
-// const baseURL = "https://www.contactiq.site";
+const baseURL = "https://www.contactiq.site";
 const options = {
     placement: 'bottom-right',
     backdrop: 'dynamic',
