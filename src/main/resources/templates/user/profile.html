@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+    <title data-th-text="${loggedInUser.name} + ' | Profile'"></title>
+</head>
+
+<body>
+    <div id="content" class="min-h-screen bg-gray-100 dark:bg-gray-950 relative">
+        <div th:if="${loggedInUser}">
+            <div data-th-replace="~{user/sidebar :: side-bar}"></div>
+        </div>
+
+        <div class="sm:pl-64 min-h-screen bg-gray-50 dark:bg-gray-900">
+            <div class="max-w-4xl mx-auto px-4 py-8">
+                <!-- Profile Header -->
+                <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 mb-6">
+                    <div class="flex flex-col md:flex-row items-center gap-6">
+                        <img th:src="${loggedInUser.profilePic}" alt="Profile"
+                             class="w-32 h-32 rounded-full object-cover border-4 border-indigo-100 dark:border-indigo-500"
+                             th:attr="onerror=|this.src='https://ui-avatars.com/api/?name=${#strings.escapeJavaScript(loggedInUser.name)}&amp;background=random&amp;size=128'|">
+
+                        <div class="text-center md:text-left">
+                            <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-2"
+                                th:text="${loggedInUser.name}">User Name</h1>
+                            <div class="inline-flex items-center gap-2 bg-indigo-100 dark:bg-indigo-600 text-indigo-800 dark:text-white px-4 py-1 rounded-full">
+                                <span class="text-sm font-medium"
+                                      th:text="${loggedInUser.provider?.name()}">Provider</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Details Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Personal Information Card -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Personal Information</h2>
+                        <dl class="space-y-4">
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Account Status</dt>
+                                <dd class="mt-1">
+                                    <span th:if="${loggedInUser.enabled}"
+                                          class="px-2 py-1 bg-green-100 dark:bg-green-600 text-green-800 dark:text-white rounded-full text-sm">
+                                        Active
+                                    </span>
+                                    <span th:unless="${loggedInUser.enabled}"
+                                          class="px-2 py-1 bg-red-100 dark:bg-red-600 text-red-800 dark:text-white rounded-full text-sm">
+                                        Inactive
+                                    </span>
+                                </dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">About Me</dt>
+                                <dd class="mt-1 text-gray-900 dark:text-gray-100" 
+                                    th:text="${loggedInUser.about} ?: 'No description provided'">
+                                    User description
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+
+                    <!-- Contact Information Card -->
+                    <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
+                        <h2 class="text-xl font-semibold text-gray-800 dark:text-white mb-4">Contact Details</h2>
+                        <dl class="space-y-4">
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Email Address</dt>
+                                <dd class="mt-1 text-gray-900 dark:text-gray-100"
+                                    th:text="${loggedInUser.email}">user@example.com</dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Phone Number</dt>
+                                <dd class="mt-1 text-gray-900 dark:text-gray-100"
+                                    th:text="${loggedInUser.phoneNumber} ?: 'Not provided'">
+                                    +1234567890
+                                </dd>
+                            </div>
+                            <div>
+                                <dt class="text-sm font-medium text-gray-500 dark:text-gray-400">Verification Status</dt>
+                                <dd class="mt-1 space-y-2">
+                                    <div class="flex items-center gap-2">
+                                        <span th:if="${loggedInUser.emailVerified}"
+                                              class="px-2 py-1 bg-green-100 dark:bg-green-600 text-green-800 dark:text-white rounded-full text-sm">
+                                            Email Verified
+                                        </span>
+                                        <span th:unless="${loggedInUser.emailVerified}"
+                                              class="px-2 py-1 bg-yellow-100 dark:bg-yellow-500 text-yellow-800 dark:text-black rounded-full text-sm">
+                                            Email Unverified
+                                        </span>
+                                    </div>
+                                </dd>
+                            </div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Profile page scripts
+    </script>
+</body>
+</html>

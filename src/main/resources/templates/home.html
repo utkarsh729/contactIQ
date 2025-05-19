@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+    <title>ContactIQ</title>
+</head>
+<body>
+<section id="content">
+    <!-- Hero Section -->
+    <div class="container mx-auto px-4 py-16">
+        <div class="flex flex-col md:flex-row items-center gap-12">
+            <div class="md:w-1/2">
+                <h1 class="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-6">
+                    Welcome to ContactIQ
+                </h1>
+                <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+                    An intelligent contact manager to organize, connect, and grow your network effortlessly.
+                </p>
+                <div class="flex gap-4">
+                    <a href="/register" class="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700 transition-all">
+                        Get Started
+                    </a>
+                    <a href="/login" class="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-lg hover:bg-blue-50 transition-all">
+                        Login
+                    </a>
+                </div>
+            </div>
+            <div class="md:w-1/2">
+                <img src="/images/mainImage.png" alt="ContactIQ Illustration" class="w-full h-auto object-contain">
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="bg-gray-50 dark:bg-gray-800 py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800 dark:text-white">Why Choose ContactIQ?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-user-lock text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Secure Login</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Login via Gmail, GitHub, or OTP with email verification.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-address-book text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Complete Contact Management</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Store name, phone, email, image, address, description, birthday & more.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-green-100 dark:bg-green-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-search text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Advanced Search</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Search by name, email, phone, LinkedIn, Instagram, etc.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-yellow-100 dark:bg-yellow-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-star text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Favorites & Birthdays</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Mark contacts as favorites and get notified of upcoming birthdays.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-pink-100 dark:bg-pink-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-download text-pink-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Export & Backup</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Easily download all your contacts with full details as a backup.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-white dark:bg-gray-700 p-6 rounded-xl shadow-lg">
+                    <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Smart Dashboard</h3>
+                    <p class="text-gray-600 dark:text-gray-300">Track recent activity, contact stats, and interact via email/chat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script th:fragment="script">
+    console.log("ContactIQ Homepage Loaded");
+</script>
+</body>
+</html>

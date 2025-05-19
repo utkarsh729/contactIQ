@@ -1,0 +1,37 @@
+services:
+  - type: web
+    name: contactiq
+    env: java
+    buildCommand: ./mvnw clean package -DskipTests
+    startCommand: java -jar target/scm2.0-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: JAVA_VERSION
+        value: 21
+      - key: PORT
+        value: 8080
+      - key: MYSQL_HOST
+        fromDatabase:
+          name: contactiq-db
+          property: host
+      - key: MYSQL_PORT
+        fromDatabase:
+          name: contactiq-db
+          property: port
+      - key: MYSQL_DB
+        fromDatabase:
+          name: contactiq-db
+          property: database
+      - key: MYSQL_USER
+        fromDatabase:
+          name: contactiq-db
+          property: user
+      - key: MYSQL_PASSWORD
+        fromDatabase:
+          name: contactiq-db
+          property: password
+
+databases:
+  - name: contactiq-db
+    databaseName: scm20
+    user: scm20_user
+    plan: free 

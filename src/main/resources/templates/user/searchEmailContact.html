@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title}, ~{::script})}">
+<head>
+    <title>ContactIQ | Search Contacts</title>
+</head>
+<body>
+    <div id="content">
+        <!-- Mobile Menu Button -->
+        <button th:if="${loggedInUser}" 
+                class="lg:hidden fixed top-4 right-4 z-30 p-2 bg-white dark:bg-gray-800 rounded-lg shadow">
+            <svg class="w-4 h-4 text-gray-800 dark:text-gray-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+
+        <div th:if="${loggedInUser}">
+            <!-- Responsive Sidebar -->
+            <div class="fixed left-0 z-20 w-64 h-screen transition-transform -translate-x-full lg:translate-x-0"
+                 data-th-replace="~{user/sidebar :: side-bar}">
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="lg:pl-64 p-4">
+            <div class="max-w-7xl mx-auto">
+                <h1 class="text-3xl md:text-5xl text-center mb-4">Search Results</h1>
+                
+                <div class="text-center mb-6">
+                    <div data-th-if="${pageContacts.hasContent()}">
+                        <p class="text-gray-600 dark:text-gray-400">
+                            List of all matching Contacts....
+                        </p>
+                    </div>
+                    <div class=" flex justify-center items-center" data-th-if="${not pageContacts.hasContent()}">
+                        <i class="fa-solid fa-notdef"></i>
+                    </div>
+                </div>
+
+                <div class="contact_container p-2 md:p-4">
+                    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+                        <form data-th-action="@{'/user/contacts/searchEmail'}">
+                            <div class="flex flex-col md:flex-row gap-4 p-4 bg-white dark:bg-gray-800">
+                                <div class="w-full md:w-48">
+                                    <select name="field" 
+                                            class="w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option selected>Select Field</option>
+                                        <option value="name" th:selected="${#strings.isEmpty(field) or field == 'name'}">Name</option>
+                                        <option value="phoneNumber" th:selected="${field == 'email'}">Phone</option>
+                                        <option value="email" th:selected="${field == 'phoneNumber'}">Email</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="relative w-full">
+                                    <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                        <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" 
+                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
+                                                  stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                        </svg>
+                                    </div>
+                                    <input name="keyword" type="text" 
+                                           class="w-full p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                           placeholder="Search contacts">
+                                </div>
+                                
+                                <button type="submit" 
+                                        class="w-full md:w-auto px-4 py-2 dark:bg-gray-600 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors">
+                                    Search
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                                <thead data-th-if="${pageContacts.hasContent()}" class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th scope="col" class="px-4 py-3 md:px-6 md:py-3">Name</th>
+                                        <th scope="col" class="px-4 py-3 md:px-6 md:py-3">Phone</th>
+                                        <th scope="col" class="px-4 py-3 md:px-6 md:py-3">Actions</th>
+                                        <th scope="col" class="px-4 py-3 md:px-6 md:py-3"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-th-each="c : ${pageContacts.getContent()}" data-th-object="${c}"
+                                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                        <td class="px-4 py-4 md:px-6">
+                                            <div class="flex flex-col md:flex-row items-start md:items-center">
+                                                <img class="w-8 h-8 md:w-10 md:h-10 rounded-full mb-2 md:mb-0 md:mr-3"
+                                                     data-th-src="*{picture}"
+                                                     onerror="this.src='/images/user.png'" 
+                                                     alt="User Profile">
+                                                <div>
+                                                    <div class="font-semibold" data-th-text="*{name}"></div>
+                                                    <div class="text-gray-500 text-sm" data-th-text="*{email}"></div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-4 md:px-6">
+                                            <div class="flex items-center">
+                                                <i class="fa-solid fa-phone mr-2 text-gray-500"></i>
+                                                <span data-th-text="*{phoneNumber}"></span>
+                                            </div>
+                                        </td>
+                                        <td class="px-4 py-4 md:px-6">
+                                            <button data-th-attr="onclick='openEmailModal(\'' + ${c.email} + '\')'"
+                                                    class="w-full md:w-auto px-3 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 text-sm md:text-base">
+                                                Send Mail
+                                            </button>
+                                        </td>
+                                        <td class="px-4 py-4 md:px-6">
+                                            <!-- Add additional buttons here if needed -->
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div data-th-if="${not pageContacts.hasContent()}">
+                            <p class="text-red-500 py-4 text-center font-semibold">
+                            No Contacts found
+                            </p>
+                        </div>
+
+                        <div data-th-if="${pageContacts.hasContent()}" class="p-4 bg-white dark:bg-gray-800">
+                            <nav aria-label="Pagination">
+                                <ul class="flex flex-wrap justify-center gap-2">
+                                    <li data-th-unless="${pageContacts.first}">
+                                        <a data-th-href="@{'/user/contacts?size='+${pageSize}+'&page=' + ${pageContacts.number - 1}}"
+                                           class="flex items-center justify-center px-3 h-8 text-gray-500 bg-white border border-gray-300 rounded hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-600">
+                                            Previous
+                                        </a>
+                                    </li>
+                                    <li data-th-each="index : ${#numbers.sequence(0, pageContacts.totalPages-1)}">
+                                        <a data-th-href="@{'/user/contacts?size='+${pageSize}+'&page='+${index}}"
+                                           data-th-classappend="${index==pageContacts.number?'bg-blue-200 dark:bg-blue-400' :'bg-white dark:bg-gray-700'}"
+                                           class="flex items-center justify-center px-3 h-8 border border-gray-300 hover:bg-gray-100 dark:hover:bg-gray-600">
+                                            <span data-th-text="${index + 1}"></span>
+                                        </a>
+                                    </li>
+                                    <li data-th-unless="${pageContacts.last}">
+                                        <a data-th-href="@{'/user/contacts?size='+${pageSize}+'&page=' + ${pageContacts.number + 1}}"
+                                           class="flex items-center justify-center px-3 h-8 text-gray-500 bg-white border border-gray-300 rounded hover:bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400 dark:hover:bg-gray-600">
+                                            Next
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email Modal -->
+        <div data-th-replace="~{user/email_modal :: emailModal}"></div>
+    </div>
+
+    <script data-th-src="@{'/js/contacts.js'}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuButton = document.querySelector('[th\\:if] button');
+            const sidebar = document.querySelector('[data-th-replace="~{user/sidebar :: side-bar}"]');
+            const mainContent = document.querySelector('.lg\\:pl-64');
+
+            if (mobileMenuButton && sidebar) {
+                mobileMenuButton.addEventListener('click', () => {
+                    sidebar.classList.toggle('-translate-x-full');
+                    mainContent.classList.toggle('pl-64');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!sidebar.contains(e.target) && 
+                        !mobileMenuButton.contains(e.target) &&
+                        window.innerWidth < 1024) {
+                        sidebar.classList.add('-translate-x-full');
+                        mainContent.classList.remove('pl-64');
+                    }
+                });
+
+                window.addEventListener('resize', () => {
+                    if (window.innerWidth >= 1024) {
+                        sidebar.classList.remove('-translate-x-full');
+                        mainContent.classList.add('lg:pl-64');
+                    } else {
+                        sidebar.classList.add('-translate-x-full');
+                        mainContent.classList.remove('pl-64');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
